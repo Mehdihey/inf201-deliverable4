@@ -30,7 +30,7 @@ class Fraction:
 
     #read only attrubutes
     @property
-    def denominator(self):
+    def numerator(self):
         return self._numinator
     
 

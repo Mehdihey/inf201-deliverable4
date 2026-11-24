@@ -43,9 +43,9 @@ def test_non_integer_raises(num, den):
 def test_attributes_are_read_only():
     f = Fraction(1, 2)
     with pytest.raises(AttributeError):
-        f._numerator = 5
+        f.numerator = 5
     with pytest.raises(AttributeError):
-        f.denominator
+        f.denominator = 5
 
 
 # Comprisons
@@ -67,7 +67,7 @@ def test_less_than():
 
 
 def test_less_than_or_equal():
-    assert Fraction(1.3) <= Fraction(1,2)
+    assert Fraction(1,3) <= Fraction(1,2)
     assert Fraction(1,2) <= Fraction(2,4)
     assert not (Fraction(1,2) <= Fraction(1,3))
 
@@ -81,10 +81,10 @@ def test_greater_than():
 def test_greater_than_or_equal():
     assert Fraction(3, 4) >= Fraction(2,3)
     assert Fraction(2, 4) >= Fraction(1,2)
-    assert not (Fraction(1, 2) >= Fraction(1, 2))
+    assert not (Fraction(1, 3) >= Fraction(1, 2))
 
 
-def test_comparison_with_unsupported_type()
+def test_comparison_with_unsupported_type():
     f = Fraction(1, 2)
     assert f.__eq__("1/2") is NotImplemented
     assert f.__lt__(0.5) is NotImplemented
@@ -100,10 +100,10 @@ def test_add():
     assert Fraction(1, 2) + 1 == Fraction(3, 2)
 
 
-def test_sub()
+def test_sub():
     assert Fraction(1, 2) - Fraction(1, 3) == Fraction(1, 6)
-    assert Fraction(-1, 2) * Fraction(2, 5) == Fraction(-1, 5)
-    assert Fraction (2, 3) * 3 == Fraction(0, 1)
+    assert Fraction(1, 3) - Fraction(1, 2) == Fraction(-1, 6)
+    assert Fraction (1, 2) - Fraction(1, 2) == Fraction(0, 1)
 
 
 def test_mul():
@@ -147,7 +147,7 @@ def test_float():
 
 def test_repr():
     assert repr(Fraction(1, 2)) == "Fraction(1, 2)"
-    assert repr(Fraction(2, -4)) == "Fraction (-1, 2)"
+    assert repr(Fraction(2, -4)) == "Fraction(-1, 2)"
 
 def test_str():
     assert str(Fraction(3, 4)) == "3/4"
